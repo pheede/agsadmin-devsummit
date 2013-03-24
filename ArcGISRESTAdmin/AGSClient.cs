@@ -95,8 +95,7 @@ namespace ArcGISRESTAdmin
             var data = new[] { new KeyValuePair<string, string>("username", encryptedUsername),
                                new KeyValuePair<string, string>("password", encryptedPassword), 
                                new KeyValuePair<string, string>("client", encryptedClient),
-                               new KeyValuePair<string, string>("encrypted", "true"),
-                               new KeyValuePair<string, string>("f", "json") };
+                               new KeyValuePair<string, string>("encrypted", "true")  };
             var content = new FormUrlEncodedContent(data);
                 
             var tokenInfo = await PostAsync(tokenEndpoint, content, addToken: false);
@@ -193,7 +192,8 @@ namespace ArcGISRESTAdmin
             // Publish Service Definition GP tool takes one required parameter in_sdp_id which specifies the ID of the uploaded .sd
             // simply omitting other optional parameters
             var parms = new[] { new KeyValuePair<string, string>("in_sdp_id", uploadResponse.item.itemID) };
-
+            
+            // Publish Service Definition is a system published GP tool hosted outside the main ArcGIS for Server Admin REST API
             Uri publishEndpoint = new Uri(ServerUrl, "/arcgis/rest/services/System/PublishingTools/GPServer/Publish Service Definition/submitJob");
 
             var publishResponse = await GetStringAsync(publishEndpoint, parms);
@@ -224,9 +224,8 @@ namespace ArcGISRESTAdmin
             fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
             content.Add(fileContent);
 
-            // other parameters
+            // add description if provided
             if (!string.IsNullOrEmpty(description)) content.Add(new StringContent(description), "description");
-            content.Add(new StringContent("json"), "f");
 
             UploadResponse response = await PostAsync<UploadResponse>(uploadEndpoint, content);
 
