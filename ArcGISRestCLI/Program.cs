@@ -71,9 +71,9 @@ namespace ArcGISRESTAdminCLIDemo
 
             // upload a pre-created .sd to create a new service
 
-            Console.Out.WriteLine(@"Uploading C:\Presentations\Demo.sd..");
+            //Console.Out.WriteLine(@"Uploading C:\Presentations\Demo.sd..");
 
-            var publishResponse = await ags.PublishServiceDefinition(new System.IO.FileInfo(@"C:\Presentations\Demo.sd"));
+            //var publishResponse = await ags.PublishServiceDefinition(new System.IO.FileInfo(@"C:\Presentations\Demo.sd"));
         }
     }
 }

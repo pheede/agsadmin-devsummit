@@ -70,7 +70,7 @@ namespace ArcGISRESTAdmin
         /// Authenticate against the defined ArcGIS Server and store the received token for future administrative requests.
         /// </summary>
         /// <returns></returns>
-        public async Task Authenticate()
+        public async Task Authenticate(int? desiredExpiration = null)
         {
             Uri encryptionInfoEndpoint = new Uri(ServerUrl, "publicKey");
             var ei = await GetStringAsync(encryptionInfoEndpoint, addToken: false);
@@ -78,7 +78,7 @@ namespace ArcGISRESTAdmin
             byte[] exponent = EncodingHelper.HexToBytes(ei["publicKey"].Value<string>());
             byte[] modulus = EncodingHelper.HexToBytes(ei["modulus"].Value<string>());
 
-            string encryptedUsername, encryptedPassword, encryptedClient;
+            string encryptedUsername, encryptedPassword, encryptedClient, encryptedExpiration = null;
 
             using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(512))
             {
@@ -88,14 +88,17 @@ namespace ArcGISRESTAdmin
                 encryptedUsername = EncodingHelper.BytesToHex(rsa.Encrypt(Encoding.UTF8.GetBytes(Username), false));
                 encryptedPassword = EncodingHelper.BytesToHex(rsa.Encrypt(Encoding.UTF8.GetBytes(Password), false));
                 encryptedClient = EncodingHelper.BytesToHex(rsa.Encrypt(Encoding.UTF8.GetBytes("requestip"), false));
+                if (desiredExpiration != null) encryptedExpiration = EncodingHelper.BytesToHex(rsa.Encrypt(Encoding.UTF8.GetBytes(desiredExpiration.Value.ToString()), false));
             }
 
             Uri tokenEndpoint = new Uri(ServerUrl, "generateToken");
 
-            var data = new[] { new KeyValuePair<string, string>("username", encryptedUsername),
-                               new KeyValuePair<string, string>("password", encryptedPassword), 
-                               new KeyValuePair<string, string>("client", encryptedClient),
-                               new KeyValuePair<string, string>("encrypted", "true")  };
+            var data = new Dictionary<string, string>();
+            data["username"] = encryptedUsername;
+            data["password"] = encryptedPassword;
+            data["client"] = encryptedClient;
+            if (encryptedExpiration != null) data["expiration"] = encryptedExpiration;
+            data["encrypted"] = "true";
             var content = new FormUrlEncodedContent(data);
                 
             var tokenInfo = await PostAsync(tokenEndpoint, content, addToken: false);
