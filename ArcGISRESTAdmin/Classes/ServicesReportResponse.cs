@@ -32,10 +32,15 @@ namespace ArcGISRESTAdmin.Classes
     [JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
     public enum ServiceType
     {
+        GlobeServer,
         MapServer,
-        GPServer
-        // there are more types not included here..
-
+        GeocodeServer,
+        GPServer,
+        GeometryServer,
+        ImageServer,
+        GeoDataServer,
+        SearchServer
+        // there may be more types not included here.. if you get a deserialization crash, add the offending type to this list
     }
     
     public class Status

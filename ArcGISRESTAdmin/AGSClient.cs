@@ -205,6 +205,36 @@ namespace ArcGISRESTAdmin
         }
 
         /// <summary>
+        /// Get detailed information about a service including information about which databases and other datasources it references, its
+        /// source map document path, and other similar information.
+        /// </summary>
+        /// <param name="service">The name of the service to get information on</param>
+        /// <param name="folderName">The name of the containing folder (null or "/" if in the root folder)</param>
+        /// <returns>A ServiceManifest object containing detailed information about the service's datasources, names, paths, etc.</returns>
+        public async Task<ServiceManifest> GetServiceManifest(ServiceReport service, string folderName = null)
+        {
+
+            if (folderName == "/") folderName = null;
+
+            Uri serviceManifestEndpoint;
+
+            if (string.IsNullOrEmpty(folderName))
+            {
+                serviceManifestEndpoint = new Uri(ServerUrl, string.Format("services/{0}.{1}/iteminfo/manifest/manifest.json", service.serviceName, service.type));
+            }
+            else
+            {
+                serviceManifestEndpoint = new Uri(ServerUrl, string.Format("services/{0}/{1}.{2}/iteminfo/manifest/manifest.json", folderName, service.serviceName, service.type));
+            }
+
+            var parms = new Dictionary<string, string>();
+
+            ServiceManifest response = await GetStringAsync<ServiceManifest>(serviceManifestEndpoint, parms);
+
+            return response;
+        }
+
+        /// <summary>
         /// Upload a file to the server for future use such as e.g. an .SD file for publishing as a service.
         /// </summary>
         /// <param name="fi">The file to upload</param>
