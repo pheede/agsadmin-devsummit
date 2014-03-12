@@ -53,6 +53,7 @@
     <Compile Include="Classes\JsonConverters.cs" />
     <Compile Include="Classes\LogMessage.cs" />
     <Compile Include="Classes\LogQueryResponse.cs" />
+    <Compile Include="Classes\ServiceManifest.cs" />
     <Compile Include="Classes\ServicesReportResponse.cs" />
     <Compile Include="Classes\ServicesResponse.cs" />
     <Compile Include="Classes\UploadResponse.cs" />
