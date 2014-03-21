@@ -17,6 +17,6 @@ It includes example methods for:
 * starting and stopping services
 * monitoring service status
 * uploading files for publishing new services from .sd files
-* enumerating active services to discover their data sources (useful for finding which service has locked you dataset)
+* enumerating active services to discover their data sources (useful for finding which service has locked your dataset)
 
 and several others.
