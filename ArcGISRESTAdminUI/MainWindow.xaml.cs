@@ -23,7 +23,7 @@ namespace ArcGISRESTAdminUI
         {
             InitializeComponent();
 
-            ags = new ArcGISRESTAdmin.AGSClient("http://philmbprowin.esri.com:6080/arcgis/admin/", "admin", "demopw");
+            ags = new ArcGISRESTAdmin.AGSClient("http://demoserver.example.com/server/admin/", "admin", "demopw");
 
             timer = new Timer(TimeSpan.FromSeconds(2).TotalMilliseconds);
             timer.Elapsed += timer_Elapsed;
