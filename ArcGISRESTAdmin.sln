@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGISRESTAdmin", "ArcGISRESTAdmin\ArcGISRESTAdmin.csproj", "{A8E21313-9862-4711-83F4-4F701FEF9FF7}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcGISRESTAdmin", "ArcGISRESTAdmin\ArcGISRESTAdmin.csproj", "{A8E21313-9862-4711-83F4-4F701FEF9FF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGISRESTWatchdogUI", "ArcGISRESTAdminUI\ArcGISRESTWatchdogUI.csproj", "{7A25DB48-0AA6-4A2C-8F16-9A5C75B0594C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcGISRESTWatchdogUI", "ArcGISRESTAdminUI\ArcGISRESTWatchdogUI.csproj", "{7A25DB48-0AA6-4A2C-8F16-9A5C75B0594C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGISRestCLI", "ArcGISRestCLI\ArcGISRestCLI.csproj", "{9C17E2C2-5B04-4440-8C48-2B3B49026832}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcGISRestCLI", "ArcGISRestCLI\ArcGISRestCLI.csproj", "{9C17E2C2-5B04-4440-8C48-2B3B49026832}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0EB24598-E0FA-4E88-BFD4-CBDEA5896EBC}"
 	ProjectSection(SolutionItems) = preProject
@@ -35,5 +37,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17C59234-8F65-40E6-A6DD-4E60D04B1F78}
 	EndGlobalSection
 EndGlobal

@@ -1,8 +1,8 @@
 # agsadmin-devsummit
 
-Code and samples from "ArcGIS for Server Administration API for C# Developers" presentation given at 2013 and 2014 Esri Developer's Summit in Palm Springs, CA.
+Code and samples that originated life with the "ArcGIS for Server Administration API for C# Developers" presentation given at 2013 and 2014 Esri Developer's Summit in Palm Springs, CA. Since updated over the years to later versions of .NET with minor tweaks for newer versions of ArcGIS Server.
 
-Built on VS2012/VS2013 and .NET Framework 4.5 with use of the JSON.NET NuGet package.
+Built on VS2022 and .NET 6 with use of the JSON.NET NuGet package.
 
 ## Description
 

@@ -28,7 +28,7 @@ namespace ArcGISRESTAdminCLIDemo
 
         static async Task DoWork()
         {
-            var ags = new AGSClient("https://philmbprowin.esri.com:6443/arcgis/admin/", "admin", "demopw");
+            var ags = new AGSClient("http://demoserver.example.com/server/admin/", "admin", "demopw");
 
             await ags.Authenticate();
 
